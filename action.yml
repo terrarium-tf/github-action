@@ -1,0 +1,9 @@
+name: 'Terrarium - Setup'
+description: 'Sets up Terrarium CLI in your GitHub Actions workflow.'
+author: 'digitalkaoz'
+runs:
+  using: 'node12'
+  main: 'download.js'
+branding:
+  icon: 'terminal'
+  color: 'purple'
