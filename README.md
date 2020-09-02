@@ -20,7 +20,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Setup Terrarium
-      uses: terrarium-tf/github-action@vmaster
+      uses: terrarium-tf/github-action@0.1
 
     - name: "default/foo stack"
       run: terrarium apply default stacks/foo
