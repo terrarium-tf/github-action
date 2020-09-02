@@ -10,6 +10,17 @@ runs:
   using: "composite"
   steps:
     - run: |
-        curl -L -o /usr/bin/terrarium https://github.com/terrarium-tf/cli/releases/download/${{ inputs.version }}/terrarium.linux
-        chmod a+x /usr/bin/terrarium
+        mkdir -p $GITHUB_WORKSPACE/bin
+        curl -L -o $GITHUB_WORKSPACE/terrarium.zip https://github.com/terrarium-tf/cli/releases/download/${{ inputs.version }}/terrarium-linux.zip
+        unzip -qq $GITHUB_WORKSPACE/terrarium.zip -d $GITHUB_WORKSPACE/bin
+        rm $GITHUB_WORKSPACE/terrarium.zip
+        chmod a+x $GITHUB_WORKSPACE/bin/terrarium.dist/terrarium
+      shell: bash
+    - run: |
+        echo "::add-path::$GITHUB_WORKSPACE/bin/terrarium.dist"
+        echo "::add-path::$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/bin/terrarium.dist"
+      shell: bash
+    - run: |
+        echo $PATH
+        terrarium --version
       shell: bash
