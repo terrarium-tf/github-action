@@ -20,10 +20,10 @@ runs:
     #    echo "::add-path::$GITHUB_WORKSPACE/bin/terrarium.dist"
     #    echo "::add-path::$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/bin/terrarium.dist"
     #  shell: bash
-     - run: |
-         echo "$GITHUB_WORKSPACE/bin/terrarium.dist" >> $GITHUB_PATH
-         echo "$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/bin/terrarium.dist" >> $GITHUB_PATH
-       shell: bash 
+    - run: |
+        echo "$GITHUB_WORKSPACE/bin/terrarium.dist" >> $GITHUB_PATH
+        echo "$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/bin/terrarium.dist" >> $GITHUB_PATH
+      shell: bash 
     - run: |
         echo $PATH
         terrarium --version
