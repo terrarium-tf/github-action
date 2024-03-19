@@ -4,21 +4,21 @@ author: 'digitalkaoz'
 inputs:
   version:
     description: 'the cli version'
-    default: '1.2.2'
+    default: '1.3.2'
     required: false
 runs:
   using: "composite"
   steps:
     - run: |
         mkdir -p $GITHUB_WORKSPACE/bin
-        curl -L -o $GITHUB_WORKSPACE/terrarium.zip https://github.com/terrarium-tf/cli/releases/download/v${{ inputs.version }}/terrarium_${{ inputs.version }}_Linux_arm64.tar.gz
-        unzip -qq $GITHUB_WORKSPACE/terrarium.zip -d $GITHUB_WORKSPACE/bin
-        rm $GITHUB_WORKSPACE/terrarium.zip
-        chmod a+x $GITHUB_WORKSPACE/bin/terrarium
+        curl -L -o $GITHUB_WORKSPACE/terrarium.tar.gz https://github.com/terrarium-tf/cli/releases/download/v${{ inputs.version }}/terrarium_${{ inputs.version }}_Linux_arm64.tar.gz
+        tar -xvzf $GITHUB_WORKSPACE/terrarium.tar.gz
+        rm $GITHUB_WORKSPACE/terrarium.tar.gz
+        chmod a+x $GITHUB_WORKSPACE/terrarium
       shell: bash
     - run: |
-        echo "$GITHUB_WORKSPACE/bin/terrarium" >> $GITHUB_PATH
-        echo "$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/bin/terrarium" >> $GITHUB_PATH
+        echo "$GITHUB_WORKSPACE/terrarium" >> $GITHUB_PATH
+        echo "$RUNNER_WORKSPACE/$(basename $GITHUB_REPOSITORY)/terrarium" >> $GITHUB_PATH
       shell: bash 
     - run: |
         echo $PATH
