@@ -1,32 +1,12 @@
-# Terrarium
+# DEPRECATED
 
-> a tiny wrapper for Terraform to make loading env vars transparent by convention
-
-see https://github.com/terrarium-tf/cli for concrete usage of `terrarium`
-
-## Use within Github-Actions
+use a more generic approach like:
 
 ```yaml
-jobs:
-  global:
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-central-1
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-
-    - name: Setup Terrarium
-      uses: terrarium-tf/github-action@1.0.0
-
-    - name: "default/foo stack"
-      run: terrarium apply default stacks/foo
-
+        uses: giantswarm/install-binary-action@v2
+        with:
+          binary: "terrarium"
+          version: "1.3.2"
+          download_url: "https://github.com/terrarium-tf/cli/releases/download/v${version}/terrarium_${version}_Linux_amd64.tar.gz"
+          smoke_test: "${binary} --version"
 ```
-
-## TODO
-
-* tests
