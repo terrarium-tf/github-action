@@ -1,11 +1,16 @@
 name: 'Terrarium - Setup'
 description: 'Sets up Terrarium CLI in your GitHub Actions workflow.'
 author: 'digitalkaoz'
+branding:
+  icon: upload-cloud
+  color: purple
+
 inputs:
   version:
     description: 'the cli version'
     default: '1.3.2'
     required: false
+
 runs:
   using: "composite"
   steps:
